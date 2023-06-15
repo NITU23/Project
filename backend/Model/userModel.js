@@ -1,23 +1,29 @@
 const  mongoose  = require("mongoose");
 
 const Schema = mongoose.Schema;
-
+// const objectId = Schema.objectId
 const userSchema = new Schema({
   
-  email: {
+  user_email: {
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
   },
   password: {
     type: String,
     required: true,
     minlength: 6,
   },
-  name : {
+  username : {
     type : String,
     required : true
+  },
+  complains: [
+   { type : mongoose.Types.ObjectId,
+    ref : "Complain"
   }
+  ]
+  
 });
 
 const User = mongoose.model("User", userSchema);

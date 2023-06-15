@@ -15,14 +15,17 @@ const complainSchema = new Schema({
     type : String,
     required : true
    },
-    mechanicName: {
-        type: String,
+    user : {
+        type : mongoose.Types.ObjectId,
+        ref : "User",
         required : true
     },
-    username : {
-        type : String,
-        required  : true
+    mechanic : {
+        type : mongoose.Types.ObjectId,
+        ref : "Mechanic",
+        required : true
     }
+
 
 })
 const Complain = mongoose.model("Complain", complainSchema);

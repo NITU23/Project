@@ -1,15 +1,15 @@
 const User = require('../Model/userModel')
 
 const login = async (req, res, next) => {
-    const { email, password } = req.body;
-    if (!email || !password) {
+    const { user_email, password } = req.body;
+    if (!user_email || !password) {
         res.status(422).send('please fill all details')
     }
 
     else {
         let userExist;
         try {
-            userExist = await User.findOne({ email });
+            userExist = await User.findOne({ user_email });
         }
         catch (err) {
             console.log('there is an error for finding user', err);
@@ -37,27 +37,25 @@ const login = async (req, res, next) => {
 }
 const signup = async (req, res, next) => {
 
-    const { email, password,name } = await req.body;
-    if (!email || !password || !name) {
+    const { user_email, password,username } = await req.body;
+    if (!user_email || !password || !username) {
         res.status(422).send('please fill all details')
     }
     else {
         let userExist;
-        try {
-            userExist = await User.findOne({ email })
-        }
-        catch (err) {
-            console.log('there is an error during signup', err)
-        }
+       
+            userExist = await User.findOne({ user_email })
+       
         if (password.length < 6) {
             res.send('Password length can not be less than 6')
         }
         else {
             if (userExist) {
-                res.status(200).send('User already Exist');
+               return res.status(200).send('User already Exist');
             }
+          
             const user = new User({
-                email: email, password: password, name : name
+                user_email: user_email, password: password, username : username,complains:[]
             })
             try {
                 await user.save()
@@ -71,4 +69,15 @@ const signup = async (req, res, next) => {
         }
     }
 }
-module.exports = { login, signup }
+
+const getAllUser = async (req,res,next) => {
+    const users = await User.find();
+    if(!users){
+        res.status(404).send('No user exist')
+    }
+    else {
+        res.status(200).send(users)
+    }
+
+}
+module.exports = { login, signup,getAllUser }

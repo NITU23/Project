@@ -1,26 +1,21 @@
 const Mechanic = require('../Model/mechanicModel')
 
 const login = async (req, res, next) => {
-    const { email, password } = req.body;
-    if (!email || !password) {
+    const { mechanic_email, password } = req.body;
+    if (!mechanic_email || !password) {
         res.status(422).send('please fill all details')
     }
     else {
         let mechanicExist;
-        try {
-            mechanicExist = await Mechanic.findOne({ email });
-        }
-        catch (err) {
-            console.log('there is an error for finding user', err);
-        }
+        mechanicExist = await Mechanic.findOne({ mechanic_email });
         if (!mechanicExist) {
-            res.status(401).send('user does not exist')
+            res.status(401).send('mechanic does not exist')
         }
         else {
             try {
                 if (mechanicExist.password === password) {
-                    console.log('user logged in successfully')
-                    res.status(200).send('User logged in successfully')
+                    console.log('mechanic logged in successfully')
+                    res.status(200).send('Mechanic logged in successfully')
                 }
                 else {
                     res.status(401).send('invalid credentials')
@@ -34,14 +29,14 @@ const login = async (req, res, next) => {
 }
 const signup = async (req, res, next) => {
 
-    const { email, password, name, machineType } = await req.body;
-    if (!email || !password || !name || !machineType) {
+    const { mechanic_email, password, mechanic_name, machineType } = await req.body;
+    if (!mechanic_email || !password || !mechanic_name || !machineType) {
         res.status(422).send("please fill all details")
     }
     else {
         let mechanicExist;
         try {
-            mechanicExist = await Mechanic.findOne({ email })
+            mechanicExist = await Mechanic.findOne({ mechanic_email })
         }
         catch (err) {
             console.log('there is an error during signup', err)
@@ -51,10 +46,10 @@ const signup = async (req, res, next) => {
         }
         else {
             if (mechanicExist) {
-                res.status(200).send('User already Exist');
+                return res.status(200).send('Mechanic already Exist');
             }
             const mechanic = new Mechanic({
-                email: email, password: password, name: name,machineType : machineType
+                mechanic_email: mechanic_email, password: password, mechanic_name: mechanic_name,machineType : machineType
             })
             try {
                 await mechanic.save()
@@ -68,4 +63,15 @@ const signup = async (req, res, next) => {
         }
     }
 }
-module.exports = { login, signup }
+
+const getAllMechanic = async(req,res,next) =>{
+    let mechanics ;
+    mechanics = await Mechanic.find();
+    if(mechanics){
+        res.status(200).json(mechanics)
+    }
+    else {
+        res.status(404).send('no mechanics found')
+    }
+}
+module.exports = { login, signup,getAllMechanic }

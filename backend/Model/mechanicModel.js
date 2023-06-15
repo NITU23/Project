@@ -3,14 +3,14 @@ const  mongoose  = require("mongoose");
 const Schema = mongoose.Schema;
 
 const mechanicSchema = new Schema({
-  name : {
+ mechanic_name : {
     type : String,
     required : true
   },
-  email: {
+  mechanic_email: {
     type: String,
     required: true,
-    unique: true,
+   // unique: true,
   },
   password: {
     type: String,
@@ -20,7 +20,12 @@ const mechanicSchema = new Schema({
   machineType: {
     type : String,
     required : true
-  }
+  },
+  complains: [
+    { type : mongoose.Types.ObjectId,
+     ref : "Complain"
+   }
+  ]
 });
 
 const Mechanic = mongoose.model("Mechanic", mechanicSchema);
