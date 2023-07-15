@@ -6,7 +6,13 @@ const mongoose = require('mongoose')
 const userRoute = require('./Route/userRouter');
 const mechanicRoute = require('./Route/mechanicRoute')
 const complainRoute = require('./Route/complainRoute')
+const session = require('express-session')
 app.use(express.json());
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true
+}))
 app.use('/user',userRoute)
 app.use('/mechanic',mechanicRoute)
 app.use('/complain',complainRoute)

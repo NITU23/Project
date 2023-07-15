@@ -15,12 +15,13 @@ const login = async (req, res, next) => {
             console.log('there is an error for finding user', err);
         }
         if (!userExist) {
-            console.log('chal bhag yha se')
+            console.log('user does not exist')
             res.status(401).send('user does not exist')
         }
         else {
             try {
                 if (userExist.password === password) {
+                    req.session.username = user_email
                     console.log('user logged in successfully')
                     res.status(200).send('User logged in successfully')
                 }
@@ -59,6 +60,7 @@ const signup = async (req, res, next) => {
             })
             try {
                 await user.save()
+                req.session.username = user_email
                 console.log('user saved')
                 return res.status(200).json(user)
             }
