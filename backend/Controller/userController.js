@@ -23,6 +23,7 @@ const login = async (req, res, next) => {
                 if (userExist.password === password) {
                     req.session.username = user_email
                     console.log('user logged in successfully')
+                    console.log('session is >>>>',req.session)
                     res.status(200).send('User logged in successfully')
                 }
                 else {
