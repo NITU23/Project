@@ -14,6 +14,9 @@ const login = async (req, res, next) => {
         else {
             try {
                 if (mechanicExist.password === password) {
+                    req.session.mechanic = mechanic_email   
+                      req.session.mechanic_sessionId = req.sessionID
+                      console.log('>>>>>>>',req.session)
                     console.log('mechanic logged in successfully')
                     res.status(200).send('Mechanic logged in successfully')
                 }
@@ -53,6 +56,9 @@ const signup = async (req, res, next) => {
             })
             try {
                 await mechanic.save()
+                req.session.mechanic = mechanic_email
+                req.session.mechanic_sessionId = req.sessionID
+                console.log('>>>>>>>>>>',req.session)
                 console.log('mechanic saved')
                 return res.status(200).json(mechanic)
             }
