@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import './Login.css'
-import { Box, TextField } from "@mui/material";
+import './Css/Login.css'
+import { TextField, Card, Button, Typography, CardContent } from "@mui/material";
+import image from '../Images/pic2.jpg'
+import { AccountCircle, Lock } from "@mui/icons-material";
 
 const Login = () => {
 
@@ -16,34 +18,42 @@ const Login = () => {
     };
     return (
         <div>
-            <p>hello testing</p>
-            <Box
-                sx={{
-                    width: 300,
-                    height: 200,
-                    border: '1px solid black',
-                    padding: 2,
-                }}
-            >
-                <form onSubmit={handleSubmit}>
-                    <div>
-
-                        <TextField
-                            id="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)} label="Email" variant="filled" />
-                        <TextField
-                            type="password"
-                            id="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)} label="Password" variant="filled"
-                        />
-                    </div>
-                    <button type="submit">Login</button>
-                </form>
-
-            </Box>
-
+            <div className="login" >
+                <Card
+                    className="card">
+                    <CardContent  className="cardContent">
+                        <Typography variant="h4" component="h2" className='heading'>
+                            Login
+                        </Typography>
+                        <form onSubmit={handleSubmit}>
+                            <div className="form-group">
+                                <TextField
+                                    label="Email"
+                                    variant="standard"
+                                    value={email}
+                                    placeholder="Enter Your Email"
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </div>
+                            <div className="form-group ">
+                                <TextField
+                                    type="password"
+                                    label="Password"
+                                    variant="standard"
+                                    placeholder="Enter Your Password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </div>
+                            <div className="button">
+                            <Button type="submit"  className="button"  variant="contained" sx={{color:'black',backgroundColor:'pink'}} >
+                                Login
+                            </Button>
+                            </div>
+                        </form>
+                    </CardContent>
+                </Card>
+            </div>
         </div>
     );
 };

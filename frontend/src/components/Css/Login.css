@@ -1,0 +1,37 @@
+.login{
+    color: #3f5efb
+}
+.card 
+{   
+    
+   /* background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh; */
+    
+}
+.cardContent{
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    height: 600px;
+    width: 300px;
+    transform: translate(-50%, -50%);
+    opacity: 0.9;
+    text-align: center;
+}
+.form-group{
+    margin-top:30px
+}
+.button{
+    margin-top:20px;
+    /* background-color: #bf5f72 */
+}
+.heading{
+    /* margin-left:60px; */
+    font-style: italic;
+    font-family: cursive;
+    text-align: center;
+}
