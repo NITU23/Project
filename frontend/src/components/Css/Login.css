@@ -1,37 +1,21 @@
 .login{
-    color: #3f5efb
+    color: #3f5efb;
+    width : 300px
 }
-.card 
-{   
-    
-   /* background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh; */
-    
-}
-.cardContent{
 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    height: 600px;
-    width: 300px;
-    transform: translate(-50%, -50%);
-    opacity: 0.9;
-    text-align: center;
-}
+
 .form-group{
-    margin-top:30px
+    margin-top:20px;
+    padding-left: 20px;
+   
 }
 .button{
     margin-top:20px;
-    /* background-color: #bf5f72 */
 }
 .heading{
-    /* margin-left:60px; */
-    font-style: italic;
+      font-style: italic;
     font-family: cursive;
-    text-align: center;
+    /* text-align: center; */
+    padding-left: 20px;
+
 }

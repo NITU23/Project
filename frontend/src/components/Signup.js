@@ -3,17 +3,20 @@ import './Css/Login.css'
 import { TextField, Card, Button, Typography, CardContent } from "@mui/material";
 
 
-const Login = () => {
+const Signup = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [name, setName] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Email:', email);
         console.log('Password:', password);
+        console.log('Name is ',name)
         setEmail('');
         setPassword('')
+        setName('');
     };
     return (
         <div>
@@ -21,10 +24,19 @@ const Login = () => {
                 <Card
                     className="card">
                     <CardContent  className="cardContent">
-                        <Typography variant="h5" component="h2" className='heading'>
-                            Login
+                        <Typography variant="h5" component="h6" className='heading'>
+                            Create Your Account
                         </Typography>
                         <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                                <TextField
+                                    label="Name"
+                                    variant="standard"
+                                    value={name}
+                                    placeholder="Enter Your Name"
+                                    onChange={(e) => setName(e.target.value)}
+                                />
+                            </div>
                             <div className="form-group">
                                 <TextField
                                     label="Email"
@@ -46,7 +58,7 @@ const Login = () => {
                             </div>
                             <div className="button">
                             <Button type="submit"  className="button"  variant="contained" sx={{color:'white',backgroundColor:'black'}} >
-                                Login
+                               Signup
                             </Button>
                             </div>
                         </form>
@@ -57,4 +69,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Signup;
